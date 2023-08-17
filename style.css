@@ -97,6 +97,9 @@ hr {
 .active{
   display: inline;
 }
+.open{
+  font-weight: 700;
+}
 @media screen and (min-width: 1020px) {
   main {
     width: 920px;

@@ -2,22 +2,30 @@ const button = document.querySelectorAll(".buttonAndQuestion");
 const answer = document.querySelectorAll(".answer");
 const question = document.querySelectorAll(".question");
 const arrow = document.querySelectorAll(".arrow");
-let active = 0;
-for (let i = 0; 1 < button.length; i++) {
+
+for (let i = 0; i < button.length; i++) {
   button[i].addEventListener("click", () => {
-    if (active == 0) {
-      answer[i].style.display = "block";
-      question[i].style.fontWeight = "700";
-      arrow[i].style.transition = "1s";
-      arrow[i].style.transform = "rotate(180deg)";
-      active = 1;
-    }
-      else {
+    if (question[i].classList.contains("open")) {
       answer[i].style.display = "none";
-      question[i].style.fontWeight = "400";
+      question[i].classList = "question";
       arrow[i].style.transition = "1s";
       arrow[i].style.transform = "rotate(0deg)";
-      active = 0;
+    } else {
+      answer[i].style.display = "block";
+      question[i].classList = "question open";
+      arrow[i].style.transition = "1s";
+      arrow[i].style.transform = "rotate(180deg)";
+    }
+    for (let k = 0; k < question.length; k++) {
+      if (
+        question[k].classList.contains("open") &&
+        question[k] !== question[i]
+      ) {
+        answer[k].style.display = "none";
+        question[k].classList = "question";
+        arrow[k].style.transition = "1s";
+        arrow[k].style.transform = "rotate(0deg)";
+      }
     }
   });
 }
